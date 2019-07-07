@@ -1,0 +1,1 @@
+from .sheets_update import update_rakings_sheet

@@ -1,0 +1,33 @@
+{% extends "../base.html" %}
+
+{% block base_body %}
+
+{% if matches_list %}
+    Found Matches
+    <table>
+    <tr>
+        <th>Date</th>
+        <th>Player 1A</th>
+        <th>Player 1B</th>
+        <th>Team 1 Score</th>
+        <th>Player 2A</th>
+        <th>Player 2B</th>
+        <th>Team 2 Score</th>
+    </tr>
+    {% for match in matches_list %}
+    <tr>
+        <td>{{ match.match_date }}</td>
+        <td>{{ match.player_1A.name }}</td>
+        <td>{{ match.player_1B.name }}</td>
+        <td>{{ match.player_1_Score }}</td>
+        <td>{{ match.player_2A.name }}</td>
+        <td>{{ match.player_2B.name }}</td>
+        <td>{{ match.player_2_Score }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No matches are available.</p>
+{% endif %}
+
+{% endblock base_body %}

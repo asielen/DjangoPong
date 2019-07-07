@@ -1,0 +1,115 @@
+{% extends "../base.html" %}
+
+{% block base_body %}
+    {% load staticfiles %}
+    <header><h1>Submit Match</h1></header>
+    <section id="table">
+        <div id="window"></div>
+        <form action="/pong/match/" method="post">
+            {% csrf_token %}
+            <div id="team1" class="team">
+                <div class="fieldWrapper server">
+                    <div class="container">
+                        <input type="radio" name="starting_team" value="1" id="serverTeam1"><label for="serverTeam1"
+                                                                                                   class="pongmark"></label>
+                        {#            <span class="pongmark"></span>#}
+                    </div>
+                </div>
+                <div class="fieldWrapper player">
+                    {% if form.player_1A.errors %}<p>{{ form.player_1A.errors.as_text  }}</p>{% endif %}
+
+                    <div class="input">
+
+                        {{ form.player_1A.label_tag }}
+                        {{ form.player_1A }}
+                    </div>
+                </div>
+
+                <div class="fieldWrapper player">
+                    {% if form.player_1B.errors %}<p>{{ form.player_1B.errors.as_text  }}</p>{% endif %}
+                    <div class="input">
+
+                        {{ form.player_1B.label_tag }}
+                        {{ form.player_1B }}
+                    </div>
+                </div>
+
+                <div class="fieldWrapper score">
+                    <input type="button" style="background-image:url('{% static "pong/switch.svg" %}')" value=""
+                           id="swapTeam1">
+                    {% if form.team_1_Score.errors %}<p>{{ form.team_1_Score.errors.as_text  }}</p>{% endif %}
+                    <div class="input">
+                        {{ form.team_1_Score.label_tag }}
+                        {{ form.team_1_Score }}
+                    </div>
+                    <div class="increment">
+                        <input type="button" style="background-image:url('{% static "pong/caret-arrow-up.svg" %}')"
+                               value="" id="upTeam1">
+                        <input type="button" style="background-image:url('{% static "pong/caret-arrow-up.svg" %}')"
+                               value="" id="downTeam1">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="team2" class="team">
+                <div class="fieldWrapper score">
+                    <input type="button" style="background-image:url('{% static "pong/switch.svg" %}')" value=""
+                           id="swapTeam2">
+{% if form.team_2_Score.errors %}<p>{{ form.team_2_Score.errors.as_text  }}</p>{% endif %}                    <div class="input">
+
+                        {{ form.team_2_Score.label_tag }}
+                        {{ form.team_2_Score }}
+                    </div>
+                    <div class="increment">
+                        <input type="button" style="background-image:url('{% static "pong/caret-arrow-up.svg" %}')"
+                               value="" id="upTeam2">
+                        <input type="button" style="background-image:url('{% static "pong/caret-arrow-up.svg" %}')"
+                               value="" id="downTeam2">
+                    </div>
+                </div>
+                <div class="fieldWrapper player">
+                    {% if form.player_2B.errors %}<p>{{ form.player_2B.errors.as_text  }}</p>{% endif %}
+                    <div class="input">
+
+                        {{ form.player_2B.label_tag }}
+                        {{ form.player_2B }}
+                    </div>
+                </div>
+                <div class="fieldWrapper player">
+                    {% if form.player_2A.errors %}<p>{{ form.player_2A.errors.as_text  }}</p>{% endif %}
+                    <div class="input">
+
+                        {{ form.player_2A.label_tag }}
+                        {{ form.player_2A }}
+                    </div>
+                </div>
+                <div class="fieldWrapper server">
+                    <div class="container">
+                        <input type="radio" name="starting_team" value="2" id="serverTeam2">
+                        <label for="serverTeam2" class="pongmark"></label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="wall">
+                {{ form.non_field_errors.errors.as_text  }}
+                {% if form.non_field_errors %}
+                <div class="non-field-errors">
+                    {% for err in form.non_field_errors %}
+                        <p class="form-error">{{ err }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="options">
+                <input type="submit" name="Submit" value="Submit">
+                <input type="submit" name="Submit and Rotate" value="Submit and Rotate">
+                <input type="submit" name="Submit and Shuffle" value="Submit and Shuffle">
+                <input type="button" style="background-image:url('{% static "pong/random.svg" %}')" value="Shuffle Players"
+                       id="shuffle">
+                <input type="button" value="Rotate Sides" id="rotate">
+            </div>
+        </form>
+    </section>
+{% endblock base_body %}

@@ -1,0 +1,303 @@
+@import '../../node_modules/foundation-sites/scss/foundation';
+
+@include foundation-everything;
+
+body {
+  background-color: #315a7d;
+}
+
+header {
+  margin: 10px;
+  color: beige;
+}
+
+#table {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: steelblue;
+  padding: 15px;
+}
+
+#window {
+  height: 10px;
+  background-color: lightblue;
+  margin-bottom: 15px;
+}
+
+#wall {
+  min-height: 10px;
+  background-color: beige;
+  margin: 15px 0;
+}
+
+label {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+[type=button], [type=submit] {
+  font-size: 1.5rem;
+  padding: 5px;
+  margin: 10px;
+}
+
+select, input, [type=button], [type=submit] {
+  background-color: inherit;
+  border: 2px solid beige;
+  border-radius: 8px;
+  color: beige;
+  font-size: 1rem;
+
+  &:focus {
+    background-color: steelblue;
+
+  }
+
+  &#swapTeam1, &#swapTeam2 {
+    background-color: #e5bf90;
+    border-radius: 100%;
+    border-color: beige;
+    height: 35px;
+    width: 35px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 5px;
+    background-position: center;
+    box-shadow: 1px 2px 3px #444;
+  }
+
+  &#swapTeam1 {
+    bottom: 15px;
+  }
+
+  &#swapTeam2 {
+    top: 15px;
+  }
+
+  option {
+    color: beige;
+    text-align: center;
+    background-color: steelblue;
+  }
+}
+
+.fieldWrapper p {
+      padding: 10px;
+    line-height: 1.25;
+    margin-bottom: 0;
+    color: beige;
+    background-color: firebrick;
+    border-radius: 7px;
+      font-size: .8rem;
+    text-align: center;
+}
+
+.increment {
+  position: absolute;
+  right: 15px;
+      bottom: 0px;
+  input {
+    display: block;
+    width: 45px;
+    border: none;
+    background-size: 45px;
+    background-repeat: no-repeat;
+    margin: 0px;
+
+    &#downTeam2, &#downTeam1 {
+      transform: rotate(180deg);
+      margin-top: 20px;
+    }
+  }
+}
+
+#table .team, #table .options {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  .server {
+    width: 100%;
+    flex-basis: 100%;
+    flex-grow: 2;
+    position: relative;
+  }
+  .player {
+    width: 50%;
+    flex-basis: 50%;
+    flex-grow: 1;
+
+    div {
+      padding: 15px;
+    }
+  }
+
+  .score {
+    width: 100%;
+    flex-basis: 100%;
+    flex-grow: 2;
+    position: relative;
+
+    .input {
+      max-width: 6rem;
+      margin: 0 auto;
+
+      label, input {
+        max-width: 100px;
+        margin: 0 auto;
+        padding-bottom: 10px;
+      }
+
+      input {
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: center;
+        color: beige;
+        border: none;
+        background-color: inherit;
+        box-shadow: none;
+
+      }
+    }
+
+  }
+}
+
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  left: -9999px;
+}
+
+/* Create a custom radio button */
+.pongmark {
+  position: absolute;
+  //top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+  display: block;
+
+}
+#team2 .pongmark {
+  bottom: 0;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .pongmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .pongmark {
+  background-color: darkorange;
+}
+
+
+
+.mktoCheckboxList input {
+  position: absolute;
+  left: -9999px;
+}
+
+.mktoCheckboxList label {
+  display: block;
+  position: relative;
+  padding: 34px 34px 34px 96px;
+  border: 2px solid rgb(180, 198, 215,.7);
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow .2s;
+  width: 822px !important; /* Need to check this on the main css*/
+}
+.mktoCheckboxList label::first-line {
+  line-height:30px;
+  font-weight:bold;
+}
+
+.mktoCheckboxList label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 38px;
+  bottom: 10px;
+  left: 34px;
+  width: 34px;
+  height: 34px;
+  background: rgba(180, 198, 215, .3);
+  border-radius: 100px;
+}
+
+input[name="Unsubscribed"] + label::before {
+  top: 34px !important;
+}
+
+.mktoCheckboxList label:hover, .mktoCheckboxList input:focus + .mktoCheckboxList label {
+  box-shadow: 0 0 20px rgba(0, 0, 0, .12);
+}
+
+.mktoCheckboxList input:checked + label {
+  border-color: #66c3cc;
+}
+
+.mktoCheckboxList input:checked + label::before {
+  content: "";
+  max-width: 34px;
+  background-image:url(https://www.iconsdb.com/icons/preview/white/checkmark-xxl.png);
+  background-color: rgba(102, 195, 204, 0.9);
+  background-blend-mode: screen;
+  background-size: 20px;
+  background-color: #66c3cc;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .pongmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .pongmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.form-error {
+  display: block;
+      text-align: center;
+    padding: 5px;
+}
