@@ -12,7 +12,10 @@ class MatchSubmit(forms.ModelForm):
                   'team_1_Score',
                   'team_2_Score',
                   'starting_team']
+    CHOICES = [('1', 'team 1'),
+               ('2', 'team 2')]
 
+    starting_team = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
     def clean(self):
         super(MatchSubmit, self).clean()
         # This method will set the `cleaned_data` attribute

@@ -10,7 +10,8 @@
             <div id="team1" class="team">
                 <div class="fieldWrapper server">
                     <div class="container">
-                        <input type="radio" name="starting_team" value="1" id="serverTeam1"><label for="serverTeam1"
+{#                        {{ form.starting_team}}#}
+                        <input type="radio" name="starting_team" value="1" id="id_starting_team_0"><label for="id_starting_team_0"
                                                                                                    class="pongmark"></label>
                         {#            <span class="pongmark"></span>#}
                     </div>
@@ -85,8 +86,8 @@
                 </div>
                 <div class="fieldWrapper server">
                     <div class="container">
-                        <input type="radio" name="starting_team" value="2" id="serverTeam2">
-                        <label for="serverTeam2" class="pongmark"></label>
+                        <input type="radio" name="starting_team" value="2" id="id_starting_team_1">
+                        <label for="id_starting_team_1" class="pongmark"></label>
                     </div>
                 </div>
 
@@ -104,14 +105,17 @@
             </div>
             <div class="options">
                 <input type="submit" name="Submit" value="Submit">
-                <input type="submit" name="Submit and Rotate" value="Submit and Rotate">
-                <input type="submit" name="Submit and Shuffle" value="Submit and Shuffle">
+            </div>
+             <div class="options">
+                <input type="submit" name="Submit and Swap" value="& Swap">
+                <input type="submit" name="Submit and Rotate" value="& Rotate">
+                <input type="submit" name="Submit and Shuffle" value="& Shuffle">
             </div>
         <div class="options">
-                <input type="button" style="background-image:url('{% static "pong/random.svg" %}')" value="Shuffle Players"
-                       id="shuffle">
-                <input type="button" value="Rotate Players" id="rotate">
-                <input type="button" value="Swap Teams" id="swap">
+                <input type="button" value="Swap" id="swap">
+                <input type="button" value="Rotate" id="rotate">
+
+            <input type="button" value="Shuffle" id="shuffle">
             </div>
         </form>
     </section>

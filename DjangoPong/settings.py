@@ -16,15 +16,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*4q!5bp4n_j(@d&idn_o0r(7u8lfrmhfj0dyc5($m)k+f%(o+='
+# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'DEBUG'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['asielen.pythonanywhere.com']
 ALLOWED_HOSTS = []
 
 
@@ -121,6 +119,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = "/var/www/example.com/assets/"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),

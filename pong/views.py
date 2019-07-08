@@ -32,13 +32,49 @@ def submit_match(request):
             # return HttpResponseRedirect('/pong/match/dump/')
             # return HttpResponseRedirect('')
 
-            if 'Submit and Rotate' in request.POST:
+            if 'Submit and Swap' in request.POST:
                 initial = {'player_1A':obj.player_2A.id if obj.player_2A else None,
                            'player_1B':obj.player_2B.id if obj.player_2B else None,
                            'player_2A':obj.player_1A.id if obj.player_1A else None,
                            'player_2B':obj.player_1B.id if obj.player_1B else None,
                            'starting_team':obj.starting_team
                            }
+            if 'Submit and Rotate' in request.POST:
+                players = [obj.player_1A, obj.player_1B, obj.player_2A, obj.player_2B]
+                players = [p.id for p in players if p]
+                if len(players) == 2:
+                    initial = {'player_1A': players[1],
+                               'player_2A': players[0],
+                               }
+                elif len(players) == 3:
+                    if not obj.player_2B: # No 2B/3
+                        # 0,1,2,3 -> 0,1,2,3 -> 0,1,2,3 Positions
+                        # 0,1,2,# -> #,0,1,2 -> 0,#,1,2  Shift
+                        # 0,1,2,# -> #,0,1,2 -> 0,#,1,2  List Elements
+                        initial = {'player_1A': obj.player_1A.id if obj.player_1A else None,
+                                   'player_1B': None,
+                                   'player_2A': obj.player_1B.id if obj.player_1B else None,
+                                   'player_2B': obj.player_2A.id if obj.player_2A else None,
+                                   'starting_team': obj.starting_team
+                                   }
+
+                    else: # No 1B/1
+                        # 0,1,2,3 -> 0,1,2,3 -> 0,1,2,3 Positions
+                        # 0,#,2,3 -> 3,0,#,2 -> 3,0,2,#  Shift
+                        # 0,#,1,2 -> 2,0,#,1 -> 2,0,1,#  List Elements
+                        initial = {'player_1A':obj.player_2A.id if obj.player_2A else None,
+                                   'player_1B':obj.player_1A.id if obj.player_1A else None,
+                                   'player_2A':obj.player_2B.id if obj.player_2B else None,
+                                   'player_2B': None,
+                                   'starting_team':obj.starting_team
+                                   }
+                else:
+                    initial = {'player_1A': obj.player_2B.id if obj.player_2B else None,
+                               'player_1B': obj.player_1A.id if obj.player_1A else None,
+                               'player_2A': obj.player_1B.id if obj.player_1B else None,
+                               'player_2B': obj.player_2A.id if obj.player_2A else None,
+                               'starting_team': obj.starting_team
+                               }
             elif 'Submit and Shuffle' in request.POST:
                 players = [obj.player_1A,obj.player_1B,obj.player_2A,obj.player_2B]
                 random.shuffle([p.id for p in players if p])
@@ -54,7 +90,7 @@ def submit_match(request):
                            'player_1B': obj.player_1B.id if obj.player_1B else None,
                            'player_2A': obj.player_2A.id if obj.player_2A else None,
                            'player_2B': obj.player_2B.id if obj.player_2B else None,
-                           'starting_team': 1 if obj.starting_team == 2 else 2
+                           'starting_team': '1' if obj.starting_team == '2' else '2'
                            }
             form = MatchSubmit(initial=initial)
 
