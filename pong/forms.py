@@ -12,8 +12,8 @@ class MatchSubmit(forms.ModelForm):
                   'team_1_Score',
                   'team_2_Score',
                   'starting_team']
-    CHOICES = [('1', 'team 1'),
-               ('2', 'team 2')]
+    CHOICES = [(1, 'team1'),
+               (2, 'team2')]
 
     starting_team = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
     def clean(self):

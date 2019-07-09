@@ -117,18 +117,18 @@ $( "#swap" ).click(function() {
 		$("[name=player_1A] option[value='"+players[2]+"']").prop('selected', true);
 		$("[name=player_2A] option[value='"+players[0]+"']").prop('selected', true);
 	} else {
-		if (players[3]=="") {
+		if (players[2]=="") {
 			// if there is no new 1A
-			$("[name=player_1A] option[value='"+players[2]+"']").prop('selected', true);
-		} else {
 			$("[name=player_1A] option[value='"+players[3]+"']").prop('selected', true);
-			$("[name=player_1B] option[value='"+players[2]+"']").prop('selected', true);
-		}
-		if (players[1]=="") {
-			$("[name=player_2A] option[value='"+players[0]+"']").prop('selected', true);
 		} else {
+			$("[name=player_1A] option[value='"+players[2]+"']").prop('selected', true);
+			$("[name=player_1B] option[value='"+players[3]+"']").prop('selected', true);
+		}
+		if (players[0]=="") {
 			$("[name=player_2A] option[value='"+players[1]+"']").prop('selected', true);
-			$("[name=player_2B] option[value='"+players[0]+"']").prop('selected', true);
+		} else {
+			$("[name=player_2A] option[value='"+players[0]+"']").prop('selected', true);
+			$("[name=player_2B] option[value='"+players[1]+"']").prop('selected', true);
 		}
 
 

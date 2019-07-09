@@ -164,8 +164,13 @@ select, input, [type=button], [type=submit] {
   }
 }
 
+.form-error {
+  display: block;
+      text-align: center;
+    padding: 5px;
+}
 
-.container {
+.pongmark {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -180,124 +185,39 @@ select, input, [type=button], [type=submit] {
 }
 
 /* Hide the browser's default radio button */
-.container input {
+.pongmark input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   left: -9999px;
+  //left: 100px; // For Debug
 }
 
 /* Create a custom radio button */
-.pongmark {
+.pongmark label {
   position: absolute;
-  //top: 0;
   left: 0;
   height: 25px;
   width: 25px;
   background-color: #eee;
   border-radius: 50%;
   display: block;
-
+  margin-left: 4px;
 }
-#team2 .pongmark {
+
+
+#team2 .pongmark label {
   bottom: 0;
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .pongmark {
-  background-color: #ccc;
+.pongmark label:hover {
+  background-color: #aaa;
 }
 
-/* When the radio button is checked, add a blue background */
-.container input:checked ~ .pongmark {
+/* ~ is an adjancent selector, I need a parent selector */
+/* When the radio button is checked, add an orange background */
+.pongmark input:checked ~ label {
   background-color: darkorange;
 }
 
-
-
-.mktoCheckboxList input {
-  position: absolute;
-  left: -9999px;
-}
-
-.mktoCheckboxList label {
-  display: block;
-  position: relative;
-  padding: 34px 34px 34px 96px;
-  border: 2px solid rgb(180, 198, 215,.7);
-  border-radius: 3px;
-  cursor: pointer;
-  user-select: none;
-  transition: box-shadow .2s;
-  width: 822px !important; /* Need to check this on the main css*/
-}
-.mktoCheckboxList label::first-line {
-  line-height:30px;
-  font-weight:bold;
-}
-
-.mktoCheckboxList label::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 38px;
-  bottom: 10px;
-  left: 34px;
-  width: 34px;
-  height: 34px;
-  background: rgba(180, 198, 215, .3);
-  border-radius: 100px;
-}
-
-input[name="Unsubscribed"] + label::before {
-  top: 34px !important;
-}
-
-.mktoCheckboxList label:hover, .mktoCheckboxList input:focus + .mktoCheckboxList label {
-  box-shadow: 0 0 20px rgba(0, 0, 0, .12);
-}
-
-.mktoCheckboxList input:checked + label {
-  border-color: #66c3cc;
-}
-
-.mktoCheckboxList input:checked + label::before {
-  content: "";
-  max-width: 34px;
-  background-image:url(https://www.iconsdb.com/icons/preview/white/checkmark-xxl.png);
-  background-color: rgba(102, 195, 204, 0.9);
-  background-blend-mode: screen;
-  background-size: 20px;
-  background-color: #66c3cc;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: absolute;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .pongmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.container .pongmark:after {
- 	top: 9px;
-	left: 9px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
-}
-
-.form-error {
-  display: block;
-      text-align: center;
-    padding: 5px;
-}

@@ -28,9 +28,6 @@ def submit_match(request):
             obj.save()
             # Update google sheet
             update_rakings_sheet(obj.google_sheets_format)
-            # redirect to a new URL:
-            # return HttpResponseRedirect('/pong/match/dump/')
-            # return HttpResponseRedirect('')
 
             if 'Submit and Swap' in request.POST:
                 initial = {'player_1A':obj.player_2A.id if obj.player_2A else None,
@@ -90,7 +87,7 @@ def submit_match(request):
                            'player_1B': obj.player_1B.id if obj.player_1B else None,
                            'player_2A': obj.player_2A.id if obj.player_2A else None,
                            'player_2B': obj.player_2B.id if obj.player_2B else None,
-                           'starting_team': '1' if obj.starting_team == '2' else '2'
+                           'starting_team': 1 if obj.starting_team == 2 else 2
                            }
             form = MatchSubmit(initial=initial)
 
@@ -99,7 +96,7 @@ def submit_match(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = MatchSubmit()
+        form = MatchSubmit(initial={'starting_team':2})
 
     return render(request, 'pong/submit_match.html', {'form': form})
 
