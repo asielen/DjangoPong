@@ -52,7 +52,7 @@ class Match(models.Model):
     def winning_team(self):
         if self.team_1_Score>self.team_2_Score:
             return 1
-        elif self.team_1_Score>self.team_2_Score:
+        elif self.team_1_Score<self.team_2_Score:
             return 2
         else:
             return None

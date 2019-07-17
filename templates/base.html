@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block meta %}{% endblock meta %}
     {% block base_title %}
-    <title>{% block title %}Andrew Sielen{% endblock title %}</title>
+    <title>{% block title %}AMS{% endblock title %}</title>
     {% endblock base_title %}
+    <link rel="shortcut icon" href="{%  static 'pong/favicon.ico' %}">
 
     {# Base Foundation CSS #}
     {% block foundation_css %}
@@ -26,14 +27,28 @@
     {% block head_js %}
 
     {% endblock head_js %}
+        <script src="{% static "js/jquery-3.4.1.min.js" %}"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-62414530-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-62414530-3');
+    </script>
+
 </head>
 <body {% block body_attr %}{% endblock body_attr %}>
     {# Main content goes here #}
-    {% block base_body %}{% endblock base_body %}
+    {% block base_body %}
+    {% endblock base_body %}
 
     {# Override if you need another version of jQuery #}
     {% block foundation_jquery %}
-    <script src="{% static "js/jquery-3.4.1.min.js" %}"></script>
+{#        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>#}
+
     {% endblock foundation_jquery %}
 
     {# Foundation JS #}
@@ -44,6 +59,7 @@
     {# Custom JS #}
     {% block body_js %}
         <script src="{% static "js/pong.js" %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js" integrity="sha256-o8aByMEvaNTcBsw94EfRLbBrJBI+c3mjna/j4LrfyJ8=" crossorigin="anonymous"></script>
     {% endblock body_js %}
 
     {# Init Foundation #}

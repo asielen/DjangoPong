@@ -25,6 +25,8 @@ def submit_match(request):
             # process the data in form.cleaned_data as required
             obj = form.save(commit=False)
             obj.match_date = timezone.localtime()
+            # Can't store strings in int field
+            if obj.starting_team == '': obj.starting_team = None
             obj.save()
             # Update google sheet
             update_rakings_sheet(obj.google_sheets_format)
@@ -87,8 +89,10 @@ def submit_match(request):
                            'player_1B': obj.player_1B.id if obj.player_1B else None,
                            'player_2A': obj.player_2A.id if obj.player_2A else None,
                            'player_2B': obj.player_2B.id if obj.player_2B else None,
-                           'starting_team': 1 if obj.starting_team == 2 else 2
+                           'starting_team': obj.starting_team
                            }
+                if obj.starting_team:
+                    initial['starting_team'] = 1 if obj.starting_team == 2 else 2
             form = MatchSubmit(initial=initial)
 
             # Rerender form with new values
@@ -96,7 +100,7 @@ def submit_match(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = MatchSubmit(initial={'starting_team':2})
+        form = MatchSubmit()
 
     return render(request, 'pong/submit_match.html', {'form': form})
 
@@ -108,4 +112,7 @@ def all_matches(request):
     matches = Match.objects.order_by('match_date')
     context = {'matches_list': matches}
     return render(request, 'pong/matches_list.html', context)
+
+def reports(request):
+    return render(request, 'pong/report-1.html')
 

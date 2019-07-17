@@ -1,0 +1,52 @@
+{% extends "pong/report-index.html" %}
+
+<script>
+  {% block jquery %}
+  var endpoint = '/pong/api/chart/';
+  function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  $.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data){
+      let ctx = document.getElementById("newChart").getContext("2d");
+      let datas = [];
+      for (let person in data) {
+;          datas.push({
+                  label: person,
+                  data: data[person],
+                  spanGaps: true,
+                  borderColor: getRandomColor(),
+              })
+      }
+      console.log(datas);
+      let newChart = new Chart(ctx, {
+          type: 'line',
+          data: {datasets: datas},
+          options: {
+              reponsive: true,
+              scales: {
+                  xAxes: [{
+                     type: 'time',
+                    distribution: 'series',
+                    time: {
+                        unit: 'day'
+                    }
+                  }]
+              }
+          }
+      });
+      console.log(newChart);
+    },
+    error: function(error_data){
+      console.log(error_data)
+    }
+  });
+  {% endblock %}
+</script>

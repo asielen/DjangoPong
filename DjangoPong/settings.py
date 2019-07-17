@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pong.apps.PongConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = "/var/www/example.com/assets/"
+# STATIC_ROOT = "/var/www/example.com/assets/"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),

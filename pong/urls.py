@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import path
 
 from . import views
+from . import endpoints
 
 
 urlpatterns = [
-    path('', views.index, name='pong'),
     path('match/', views.submit_match, name='new match'),
     path('match/dump/', views.all_matches, name='match dump'),
     path('u/<str:user_name>/', views.user_stats, name='user stats'),
+    path('reports/',views.reports, name='reports'),
+
+    path('api/chart/', endpoints.Rankings.as_view()),
+
 
 ]
