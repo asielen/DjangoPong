@@ -16,14 +16,14 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# SECRET_KEY = os.environ['SECRET_KEY']
-SECRET_KEY = 'DEBUG'
+SECRET_KEY = os.environ['SECRET_KEY']
+# SECRET_KEY = 'DEBUG'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-# ALLOWED_HOSTS = ['asielen.pythonanywhere.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['asielen.pythonanywhere.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
