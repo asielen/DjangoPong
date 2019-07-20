@@ -10,21 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# SECRET_KEY = os.environ['SECRET_KEY']
-SECRET_KEY = 'DEBUG'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-# ALLOWED_HOSTS = ['asielen.pythonanywhere.com']
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -120,9 +110,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATIC_ROOT = "/var/www/example.com/assets/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
 ]
+
+# local debug override
+try:
+    from .settings_local import ls
+    ALLOWED_HOSTS = ls.ALLOWED_HOSTS
+    DEBUG = ls.DEBUG
+    SECRET_KEY = ls.SECRET_KEY
+except ImportError as e:
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    ALLOWED_HOSTS = ['asielen.pythonanywhere.com']
+    pass

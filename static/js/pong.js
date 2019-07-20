@@ -1,3 +1,13 @@
+
+$("#id_player_1A").chosen();
+$("#id_player_1B").chosen();
+$("#id_player_2A").chosen();
+$("#id_player_2B").chosen();
+
+
+
+
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

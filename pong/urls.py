@@ -27,6 +27,7 @@ urlpatterns = [
     path('reports/',views.reports, name='reports'),
 
     path('api/chart/', endpoints.Rankings.as_view()),
+    path('api/all/', endpoints.All.as_view()),
 
 
 ]
