@@ -1,8 +1,11 @@
+//
+// $(document).ready(function() {
+//     $("#id_player_1A").select2();
+// 	$("#id_player_1B").select2();
+// 	$("#id_player_2A").select2();
+// 	$("#id_player_2B").select2();
+// });
 
-$("#id_player_1A").chosen();
-$("#id_player_1B").chosen();
-$("#id_player_2A").chosen();
-$("#id_player_2B").chosen();
 
 
 
@@ -17,7 +20,7 @@ function shuffleArray(array) {
 
 
 $( "#swapTeam1" ).click(function() {
-  var player1A = $("[name=player_1A]").children("option:selected").val();
+  	var player1A = $("[name=player_1A]").children("option:selected").val();
 	var player1B = $("[name=player_1B]").children("option:selected").val();
 	$("[name=player_1A]").children("option:selected").prop('selected', false);
 	$("[name=player_1B]").children("option:selected").prop('selected', false);
@@ -146,6 +149,24 @@ $( "#swap" ).click(function() {
 	}
 });
 
+var windowteam = 1;
+$( "#swapwindow" ).click(function() {
+	if (windowteam == 1) {
+		$("#wall").css("background-color", "lightblue");
+		$("#window").css("background-color", "beige");
+		$("#window #weather").css("display", "none");
+		$("#wall #weather").css("display", "initial");
+		windowteam = 2
+	} else {
+		$("#wall").css("background-color", "beige");
+		$("#window").css("background-color", "lightblue");
+		$("#window #weather").css("display", "initial");
+		$("#wall #weather").css("display", "none");
+		windowteam = 1
+	}
+	$("#id_window_team").val(windowteam);
+	// console.log("New Window Team ",windowteam);
+});
 
 $( "#upTeam1" ).click(function() {
 	$("#id_team_1_Score").val(parseInt($("#id_team_1_Score").val())+1)

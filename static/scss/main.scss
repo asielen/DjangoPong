@@ -9,6 +9,29 @@ body {
 header {
   margin: 10px;
   color: beige;
+  > * {
+    display: inline-block;
+  }
+  nav {
+    float: right;
+
+    #swapwindow {
+      background: #e5bf90 url("/static/pong/swap-window.png") no-repeat;
+      background-size: 17px;
+      background-position: center;
+      width: 35px;
+      height: 35px;
+      margin-top: 0px;
+      box-shadow: 1px 2px 3px #444;
+      @media screen and (min-width: 640px) {
+        width: 50px;
+        height: 50px;
+        background-size: 25px;
+        margin-top: 10px;
+      }
+
+    }
+  }
 }
 
 #table {
@@ -27,7 +50,17 @@ header {
 #wall {
   min-height: 10px;
   background-color: beige;
-  margin: 15px 0;
+  margin: 32px 0 15px 0;
+  position: relative;
+  #weather {
+    display: none;
+    position: absolute;
+    top: -38px;
+  }
+}
+
+#weather {
+  color: aliceblue;
 }
 
 label {
@@ -40,6 +73,8 @@ label {
   font-size: 1.5rem;
   padding: 5px;
   margin: 10px;
+  flex-grow: 1;
+
 }
 
 select, input, [type=button], [type=submit] {
@@ -129,7 +164,7 @@ select, input, [type=button], [type=submit] {
     flex-grow: 1;
 
     div {
-      padding: 15px;
+          padding: 15px 20px 15px 20px;
     }
   }
 
@@ -209,7 +244,7 @@ select, input, [type=button], [type=submit] {
 
 
 #team2 .pongmark label {
-  bottom: 0;
+  bottom: -20px;
 }
 
 /* On mouse-over, add a grey background color */
@@ -220,9 +255,11 @@ select, input, [type=button], [type=submit] {
 /* ~ is an adjancent selector, I need a parent selector */
 /* When the radio button is checked, add an orange background */
 .pongmark input:checked ~ label {
-  background-color: darkorange;
+  background: darkorange url("/static/pong/checkmark.png") no-repeat;
+  background-size: 17px;
+  background-position: center;
 }
 
-.chosen-container {
+.select2-container {
   width: 100% !important;
 }

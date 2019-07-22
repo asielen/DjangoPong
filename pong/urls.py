@@ -26,8 +26,12 @@ urlpatterns = [
     path('u/<str:user_name>/', views.user_stats, name='user stats'),
     path('reports/',views.reports, name='reports'),
 
-    path('api/chart/', endpoints.Rankings.as_view()),
-    path('api/all/', endpoints.All.as_view()),
+    path('api/matches/players/', endpoints.Matches_Players.as_view()),
+    path('api/matches/teams/', endpoints.Matches_Teams.as_view()),
+    path('api/matches/', endpoints.Matches_All.as_view()),
+
+    path('api/players/stats/daily', endpoints.Player_Stats_Daily.as_view()),
+    path('api/players/', endpoints.Players.as_view()),
 
 
 ]

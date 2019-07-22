@@ -31,7 +31,7 @@ class Match(models.Model):
     team_1_Score = models.IntegerField(default=21)
     team_2_Score = models.IntegerField(default=21)
     match_date = models.DateTimeField('match date')
-    window_team = models.IntegerField(blank=True,null=True)
+    window_team = models.IntegerField(default=1,blank=True,null=True)
     starting_team = models.IntegerField(blank=True,null=True)
 
     def __str__(self):

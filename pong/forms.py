@@ -11,7 +11,8 @@ class MatchSubmit(forms.ModelForm):
                   'player_2B',
                   'team_1_Score',
                   'team_2_Score',
-                  'starting_team']
+                  'starting_team',
+                  'window_team']
     CHOICES = [(1, 'team1'),
                (2, 'team2')]
 

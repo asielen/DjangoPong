@@ -2,9 +2,14 @@
 {% block title %}Log Match{% endblock title %}
 {% block base_body %}
     {% load staticfiles %}
-    <header><h1>Submit Match</h1></header>
+    <header>
+        <h1>Submit Match</h1>
+        <nav>
+            <input type="button" value="" id="swapwindow">
+        </nav>
+    </header>
     <section id="table">
-        <div id="window"></div>
+        <div id="window"><div id="weather">{{ weather.temp }}&deg;F<img src="{{ weather.icon }}"/></div></div>
         <form action="/pong/match/" method="post">
             {% csrf_token %}
             <div id="team1" class="team">
@@ -93,6 +98,8 @@
 
             </div>
             <div id="wall">
+                <div id="weather">{{ weather.temp }}&deg;F<img src="{{ weather.icon }}"/></div>
+                {{ form.window_team.as_hidden }}
                 {{ form.non_field_errors.errors.as_text }}
                 {% if form.non_field_errors %}
                     <div class="non-field-errors">

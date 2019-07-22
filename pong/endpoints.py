@@ -16,9 +16,9 @@ from rest_framework.response import Response
 
 
 from .models import Player, Match
-from .reports import get_games_per_player, get_all_games
+from .reports import get_games_per_player, get_all_games, get_games_per_team, get_players, get_player_stats_daily
 
-class All(APIView):
+class Matches_All(APIView):
     authentication_classes = []
     permission_classes = []
 
@@ -30,7 +30,7 @@ class All(APIView):
         data = get_all_games(stardate, enddate, players)
         return Response(data)
 
-class Rankings(APIView):
+class Matches_Players(APIView):
     authentication_classes = []
     permission_classes = []
 
@@ -38,5 +38,27 @@ class Rankings(APIView):
         data = get_games_per_player()
         return Response(data)
 
+class Matches_Teams(APIView):
+    authentication_classes = []
+    permission_classes = []
 
+    def get(self, request, format=None):
+        data = get_games_per_team()
+        return Response(data)
+
+class Players(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        data = get_players()
+        return Response(data)
+
+class Player_Stats_Daily(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        data = get_player_stats_daily()
+        return Response(data)
 

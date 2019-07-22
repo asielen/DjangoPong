@@ -1,5 +1,6 @@
 import random
 
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
@@ -7,8 +8,10 @@ from django.utils import timezone
 from .models import Player, Match
 from .forms import MatchSubmit
 from .google_sheets import update_rakings_sheet
+from .tools import *
 
-
+# ID used for looking up the weather
+Blend_WOEID = 12797159
 
 # Create your views here.
 
@@ -16,6 +19,8 @@ def index(request):
     return render(request, 'pong/index.html')
 
 def submit_match(request):
+    weather_icon = get_weather()
+
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -38,7 +43,7 @@ def submit_match(request):
                            'player_2B':obj.player_1B.id if obj.player_1B else None,
                            'starting_team':obj.starting_team
                            }
-            if 'Submit and Rotate' in request.POST:
+            elif 'Submit and Rotate' in request.POST:
                 players = [obj.player_1A, obj.player_1B, obj.player_2A, obj.player_2B]
                 players = [p.id for p in players if p]
                 if len(players) == 2:
@@ -96,13 +101,13 @@ def submit_match(request):
             form = MatchSubmit(initial=initial)
 
             # Rerender form with new values
-            return render(request, 'pong/submit_match.html', {'form': form})
+            return render(request, 'pong/submit_match.html', {'form': form,'weather':weather_icon})
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = MatchSubmit()
 
-    return render(request, 'pong/submit_match.html', {'form': form})
+    return render(request, 'pong/submit_match.html', {'form': form,'weather':weather_icon})
 
 def user_stats(request, user_name):
     user = Player.objects.get(name=user_name)
