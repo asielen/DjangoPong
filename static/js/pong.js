@@ -180,6 +180,9 @@ $( "#downTeam2" ).click(function() {
 	$("#id_team_2_Score").val(Math.max(parseInt($("#id_team_2_Score").val())-1,0))
 });
 
+$('input').on('click', function(){
+	ga('send', 'event', 'Interface', 'Click', this.id, '0');
+});
 
 /* No SELECT 2
 $( "#swapTeam1" ).click(function() {
